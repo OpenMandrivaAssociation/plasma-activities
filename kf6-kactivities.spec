@@ -26,6 +26,7 @@ BuildRequires: doxygen
 BuildRequires: cmake(Qt6ToolsTools)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6QuickTest)
+BuildRequires: boost-devel
 Requires: %{libname} = %{EVRD}
 
 %description
