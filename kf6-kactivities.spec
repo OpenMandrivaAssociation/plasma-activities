@@ -31,6 +31,7 @@ BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
+BuildRequires: cmake(KF6WindowSystem)
 Requires: %{libname} = %{EVRD}
 
 %description
