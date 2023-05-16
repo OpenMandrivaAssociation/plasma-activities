@@ -30,6 +30,7 @@ BuildRequires: boost-devel
 BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(KF6Config)
+BuildRequires: cmake(KF6CoreAddons)
 Requires: %{libname} = %{EVRD}
 
 %description
