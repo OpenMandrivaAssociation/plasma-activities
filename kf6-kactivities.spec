@@ -29,6 +29,7 @@ BuildRequires: cmake(Qt6QuickTest)
 BuildRequires: boost-devel
 BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Sql)
+BuildRequires: cmake(KF6Config)
 Requires: %{libname} = %{EVRD}
 
 %description
