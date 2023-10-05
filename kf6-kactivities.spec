@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Activities
 %define devname %mklibname KF6Activities -d
-%define git 20230927
+%define git 20231005
 
 Name: kf6-kactivities
 Version: 5.240.0
@@ -76,7 +76,6 @@ Core components for the KDE's Activities System
 %files -n %{devname}
 %{_includedir}/KF6/KActivities
 %{_libdir}/cmake/KF6Activities
-%{_qtdir}/mkspecs/modules/qt_KActivities.pri
 %{_qtdir}/doc/KF6Activities.*
 %{_libdir}/pkgconfig/KF6Activities.pc
 
