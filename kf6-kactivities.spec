@@ -1,6 +1,6 @@
 %define libname %mklibname KF6Activities
 %define devname %mklibname KF6Activities -d
-%define git 20231014
+%define git 20231022
 
 Name: kf6-kactivities
 Version: 5.240.0
