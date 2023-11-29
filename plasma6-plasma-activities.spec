@@ -1,19 +1,23 @@
 %define stable %([ "$(echo %{version} |cut -d. -f2)" -ge 80 -o "$(echo %{version} |cut -d. -f3)" -ge 80 ] && echo -n un; echo -n stable)
 
-%define libname %mklibname KF6Activities
-%define devname %mklibname KF6Activities -d
+# Renamed in 5.90.0
+%define oldlibname %mklibname KF6Activities
+%define olddevname %mklibname KF6Activities -d
+
+%define libname %mklibname PlasmaActivities
+%define devname %mklibname PlasmaActivities -d
 #define git 20231103
 
-Name: plasma6-kactivities
-Version: 5.27.80
-Release: %{?git:0.%{git}.}2
+Name: plasma6-plasma-activities
+Version: 5.90.0
+Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
-Source0: https://invent.kde.org/frameworks/kactivities/-/archive/master/kactivities-master.tar.bz2#/kactivities-%{git}.tar.bz2
+Source0: https://invent.kde.org/frameworks/plasma-activities/-/archive/master/plasma-activities-master.tar.bz2#/plasma-activities-%{git}.tar.bz2
 %else
-Source0: http://download.kde.org/%{stable}/plasma/%{version}/kactivities-%{version}.tar.xz
+Source0: http://download.kde.org/%{stable}/plasma/%{version}/plasma-activities-%{version}.tar.xz
 %endif
 Summary: Core components for the KDE's Activities System
-URL: https://invent.kde.org/frameworks/kactivities
+URL: https://invent.kde.org/frameworks/plasma-activities
 License: CC0-1.0 LGPL-2.0+ LGPL-2.1 LGPL-3.0
 Group: System/Libraries
 BuildRequires: cmake
@@ -47,6 +51,7 @@ Core components for the KDE's Activities System
 Summary: Core components for the KDE's Activities System
 Group: System/Libraries
 Requires: %{name} = %{EVRD}
+%rename %{oldlibname}
 
 %description -n %{libname}
 Core components for the KDE's Activities System
@@ -55,6 +60,7 @@ Core components for the KDE's Activities System
 Summary: Development files for %{name}
 Group: Development/C
 Requires: %{libname} = %{EVRD}
+%rename %{olddevname}
 
 %description -n %{devname}
 Development files (Headers etc.) for %{name}.
@@ -62,7 +68,7 @@ Development files (Headers etc.) for %{name}.
 Core components for the KDE's Activities System
 
 %prep
-%autosetup -p1 -n kactivities-%{?git:master}%{!?git:%{version}}
+%autosetup -p1 -n plasma-activities-%{?git:master}%{!?git:%{version}}
 %cmake \
 	-DBUILD_QCH:BOOL=ON \
 	-DBUILD_WITH_QT6:BOOL=ON \
@@ -76,15 +82,16 @@ Core components for the KDE's Activities System
 %ninja_install -C build
 
 %files
-%{_datadir}/qlogging-categories6/kactivities.*
-%{_bindir}/kactivities-cli6
+%{_datadir}/qlogging-categories6/kde.plasma.categories
+%{_datadir}/qlogging-categories6/kde.renamecategories
+%{_bindir}/plasma-activities-cli6
 
 %files -n %{devname}
-%{_includedir}/KF6/KActivities
-%{_libdir}/cmake/KF6Activities
-%{_qtdir}/doc/KF6Activities.*
-%{_libdir}/pkgconfig/KF6Activities.pc
+%{_includedir}/PlasmaActivities
+%{_libdir}/cmake/PlasmaActivities
+%{_qtdir}/doc/PlasmaActivities.*
+%{_libdir}/pkgconfig/PlasmaActivities.pc
 
 %files -n %{libname}
-%{_libdir}/libKF6Activities.so*
+%{_libdir}/libPlasmaActivities.so*
 %{_qtdir}/qml/org/kde/activities
