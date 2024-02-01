@@ -9,7 +9,7 @@
 #define git 20231103
 
 Name: plasma6-plasma-activities
-Version: 5.92.0
+Version: 5.93.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/frameworks/plasma-activities/-/archive/master/plasma-activities-master.tar.bz2#/plasma-activities-%{git}.tar.bz2
