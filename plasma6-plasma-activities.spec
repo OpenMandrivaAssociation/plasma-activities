@@ -7,12 +7,14 @@
 %define libname %mklibname PlasmaActivities
 %define devname %mklibname PlasmaActivities -d
 %define git 20240217
+%define gitbranch Plasma/6.0
+%define gitbranchd %(echo %{gitbranch} | sed -e 's,/,-,g')
 
 Name: plasma6-plasma-activities
 Version: 5.94.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
-Source0: https://invent.kde.org/plasma/plasma-activities/-/archive/master/plasma-activities-master.tar.bz2#/plasma-activities-%{git}.tar.bz2
+Source0: https://invent.kde.org/plasma/plasma-activities/-/archive/%{gitbranch}/plasma-activities-%{gitbranchd}.tar.bz2#/plasma-activities-%{git}.tar.bz2
 %else
 Source0: http://download.kde.org/%{stable}/plasma/%{version}/plasma-activities-%{version}.tar.xz
 %endif
@@ -68,7 +70,7 @@ Development files (Headers etc.) for %{name}.
 Core components for the KDE's Activities System
 
 %prep
-%autosetup -p1 -n plasma-activities-%{?git:master}%{!?git:%{version}}
+%autosetup -p1 -n plasma-activities-%{?git:%{gitbranchd}}%{!?git:%{version}}
 %cmake \
 	-DBUILD_QCH:BOOL=ON \
 	-DBUILD_WITH_QT6:BOOL=ON \
