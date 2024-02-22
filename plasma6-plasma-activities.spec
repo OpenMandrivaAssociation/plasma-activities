@@ -6,12 +6,12 @@
 
 %define libname %mklibname PlasmaActivities
 %define devname %mklibname PlasmaActivities -d
-%define git 20240217
+%define git 20240222
 %define gitbranch Plasma/6.0
 %define gitbranchd %(echo %{gitbranch} | sed -e 's,/,-,g')
 
 Name: plasma6-plasma-activities
-Version: 5.94.0
+Version: 6.0.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/plasma/plasma-activities/-/archive/%{gitbranch}/plasma-activities-%{gitbranchd}.tar.bz2#/plasma-activities-%{git}.tar.bz2
