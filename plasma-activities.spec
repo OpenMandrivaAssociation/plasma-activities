@@ -10,7 +10,7 @@
 %define gitbranch Plasma/6.0
 %define gitbranchd %(echo %{gitbranch} | sed -e 's,/,-,g')
 
-Name: plasma6-plasma-activities
+Name: plasma-activities
 Version: 6.3.4
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
@@ -22,9 +22,8 @@ Summary: Core components for the KDE's Activities System
 URL: https://invent.kde.org/frameworks/plasma-activities
 License: CC0-1.0 LGPL-2.0+ LGPL-2.1 LGPL-3.0
 Group: System/Libraries
-BuildRequires: cmake
-BuildRequires: cmake(ECM)
 BuildRequires: python
+BuildRequires: cmake(ECM)
 BuildRequires: cmake(Qt6DBusTools)
 BuildRequires: cmake(Qt6DBus)
 BuildRequires: cmake(Qt6Network)
@@ -38,13 +37,19 @@ BuildRequires: doxygen
 BuildRequires: cmake(Qt6ToolsTools)
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6QuickTest)
-BuildRequires: boost-devel
 BuildRequires: cmake(Qt6Quick)
 BuildRequires: cmake(Qt6Sql)
 BuildRequires: cmake(KF6Config)
 BuildRequires: cmake(KF6CoreAddons)
 BuildRequires: cmake(KF6WindowSystem)
+BuildRequires: boost-devel
+BuildSystem: cmake
+BuildOption: -DBUILD_QCH:BOOL=ON
+BuildOption: -DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON
 Requires: %{libname} = %{EVRD}
+
+# Renamed 2025-04-27 after 6.0
+%rename plasma6-plasma-activities
 
 %description
 Core components for the KDE's Activities System
@@ -68,20 +73,6 @@ Requires: %{libname} = %{EVRD}
 Development files (Headers etc.) for %{name}.
 
 Core components for the KDE's Activities System
-
-%prep
-%autosetup -p1 -n plasma-activities-%{?git:%{gitbranchd}}%{!?git:%{version}}
-%cmake \
-	-DBUILD_QCH:BOOL=ON \
-	-DBUILD_WITH_QT6:BOOL=ON \
-	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
-	-G Ninja
-
-%build
-%ninja_build -C build
-
-%install
-%ninja_install -C build
 
 %files
 %{_bindir}/plasma-activities-cli6
