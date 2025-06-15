@@ -11,7 +11,7 @@
 %define gitbranchd %(echo %{gitbranch} | sed -e 's,/,-,g')
 
 Name: plasma-activities
-Version: 6.3.5
+Version: 6.4.0
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/plasma/plasma-activities/-/archive/%{gitbranch}/plasma-activities-%{gitbranchd}.tar.bz2#/plasma-activities-%{git}.tar.bz2
@@ -74,6 +74,13 @@ Development files (Headers etc.) for %{name}.
 
 Core components for the KDE's Activities System
 
+%package doc
+Summary: API documentation for %{name} in Qt Assistant format
+Group: Development/C++
+
+%description doc
+API documentation for %{name} in Qt Assistant format
+
 %files
 %{_bindir}/plasma-activities-cli6
 %{_datadir}/qlogging-categories6/plasma-activities.categories
@@ -82,8 +89,10 @@ Core components for the KDE's Activities System
 %files -n %{devname}
 %{_includedir}/PlasmaActivities
 %{_libdir}/cmake/PlasmaActivities
-%{_qtdir}/doc/PlasmaActivities.*
 %{_libdir}/pkgconfig/PlasmaActivities.pc
+
+%files doc
+%doc %{_qtdir}/doc/PlasmaActivities.*
 
 %files -n %{libname}
 %{_libdir}/libPlasmaActivities.so*
