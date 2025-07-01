@@ -11,7 +11,7 @@
 %define gitbranchd %(echo %{gitbranch} | sed -e 's,/,-,g')
 
 Name: plasma-activities
-Version: 6.4.1
+Version: 6.4.2
 Release: %{?git:0.%{git}.}1
 %if 0%{?git:1}
 Source0: https://invent.kde.org/plasma/plasma-activities/-/archive/%{gitbranch}/plasma-activities-%{gitbranchd}.tar.bz2#/plasma-activities-%{git}.tar.bz2
